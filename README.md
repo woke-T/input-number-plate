@@ -3,7 +3,7 @@
 ## 介绍
 input-number-plate是基于Vue的一款虚拟键盘，用于车牌号输入。简洁，清爽。
 
-![Image text](https://raw.github.com/yourName/repositpry/master/yourprojectName/img-folder/test.jpg)
+![效果展示](http://www.woke20.com/staticFile/images/upload_c14fcac41a5429249a6ebcc6ff030dad.png)
 
 ## 如何使用
 
