@@ -15,6 +15,7 @@ npm install input-number-plate --save
 ```
 2.vue中注册插件
 import InputCar from 'input-number-plate'
+import 'input-number-plate/lib/inputCar.css'
 
 Vue.use(InputCar)
 ```
