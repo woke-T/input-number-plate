@@ -3,7 +3,7 @@
     <div class="wrap">
       <div class="test-wrap">
         <InputCar @submit="submit"></InputCar>
-        hahah
+        <div>测试</div>
       </div>
     </div>
   </div>
