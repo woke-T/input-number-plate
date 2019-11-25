@@ -1,10 +1,11 @@
 {
   "name": "input-number-plate",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "description": "基于Vue的模拟车牌号输入键盘",
   "main": "lib/inputCar.umd.min.js",
   "license": "MIT",
+  "keyword": "input car plate",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
