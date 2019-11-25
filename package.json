@@ -1,6 +1,6 @@
 {
   "name": "input-number-plate-applet",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "基于Vue的模拟车牌号输入键盘",
   "main": "lib/inputCar.umd.min.js",
