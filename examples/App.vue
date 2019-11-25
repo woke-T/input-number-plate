@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <div class="test-wrap">
-      <InputCar @submit="submit"></InputCar>
+    <div class="wrap">
+      <div class="test-wrap">
+        <InputCar @submit="submit"></InputCar>
+        hahah
+      </div>
     </div>
   </div>
 </template>
@@ -12,7 +15,7 @@ export default {
   components: {},
   methods: {
     submit(value) {
-      console.log(value)
+      console.log(value);
     }
   }
 };
@@ -23,8 +26,11 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow: scroll;
 }
-.test-wrap {
-  width: 70%;
+.wrap {
+  padding-top: 500px;
+  /* height: 100vh; */
 }
+
 </style>

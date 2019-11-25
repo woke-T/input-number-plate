@@ -5,7 +5,7 @@
     <slot></slot>
 
     <!--默认输入框-->
-    <div @click="open()" v-if="defaultType" class="data-show">
+    <div ref="inputBlock" @click="open()" v-if="defaultType" class="data-show">
       <div
         :class="['data-show-block', { active: inputValue.length === n - 1 }]"
         v-for="n in 8"
@@ -104,6 +104,7 @@ export default {
   },
   data: function() {
     return {
+      placehoderDom: null,
       keybordType: "字",
       inputValue: [],
       visible: false,
@@ -227,31 +228,70 @@ export default {
     // 打开键盘
     open() {
       this.visible = true;
+    },
+    //判断展示框是否被键盘挡住
+    checkInputLocation() {
+      const clientHeight = document.documentElement.clientHeight;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const inputTopHeight = this.$refs.inputBlock.getBoundingClientRect().top;
+      const inputHeight = this.$refs.inputBlock.scrollHeight;
+      //如果键盘被挡住，并且页面没有滚动条,返回true
+      if (
+        inputHeight + 250 + inputTopHeight >= clientHeight &&
+        scrollHeight === clientHeight
+      ) {
+        return true;
+      } else {
+        return false;
+      }
     }
+  },
+  created() {
+    this.placehoderDom = document.createElement("div");
+    this.placehoderDom.style.cssText =
+      "height: 260px;width: 100%;background: red;opacity:0";
+    this.placehoderDom.style.display = "none";
+    document.body.appendChild(this.placehoderDom);
   },
   watch: {
     inputValue(key) {
       if (this.inputValue.length === 0) this.keybordType = "字";
       if (this.inputValue.length > 0 && this.inputValue.length < 8)
         this.keybordType = "ABC";
+    },
+    visible(type) {
+      if (type) {
+        //键盘唤醒并且键盘挡住输入框,同时页面无滚动条时，占位块展示出来从而使页面可以通过scrllTo()来滚动
+        if (this.checkInputLocation()) {
+          this.placehoderDom.style.display = "block";
+        }
+        window.scrollTo(0, 250);
+      } else {
+        document.body.scrollIntoView({
+          block: "start",
+          behavior: "smooth"
+        });
+        this.placehoderDom.style.display = "none";
+      }
     }
   }
 };
 </script>
 
 <style scoped lang="less">
-
-.keybordSlide-enter-active, .keybordSlide-leave-active {
-  transition: all .2s;
+.keybordSlide-enter-active,
+.keybordSlide-leave-active {
+  transition: all 0.2s linear;
   transform: translateY(0px);
 }
 .keybordSlide-enter, .keybordSlide-leave-to /* .keybordSlide-leave-active below version 2.1.8 */ {
-  transform: translateY(240px);
+  transform: translateY(250px);
 }
 
 .back-bord {
   width: 100vw;
-  height: 100vh;
+  overflow-y: scroll;
+  height: calc(100vh + 250px);
   position: fixed;
   top: 0;
   left: 0;
@@ -289,7 +329,7 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 240px;
+  height: 250px;
   background: rgb(192, 192, 196);
   .keybord-header {
     padding: 0 15px;
