@@ -1,6 +1,7 @@
 # input-number-plate
 
 ## 介绍
+此分支为小程序端适配
 input-number-plate是基于Vue的一款虚拟键盘，用于车牌号输入。
 简洁，清爽。输入框可以宽度自适应，并且保持宽高比例。
 

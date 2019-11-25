@@ -104,7 +104,6 @@ export default {
   },
   data: function() {
     return {
-      placehoderDom: null,
       keybordType: "字",
       inputValue: [],
       visible: false,
@@ -229,29 +228,6 @@ export default {
     open() {
       this.visible = true;
     },
-    //判断展示框是否被键盘挡住
-    checkInputLocation() {
-      const clientHeight = document.documentElement.clientHeight;
-      const scrollHeight = document.documentElement.scrollHeight;
-      const inputTopHeight = this.$refs.inputBlock.getBoundingClientRect().top;
-      const inputHeight = this.$refs.inputBlock.scrollHeight;
-      //如果键盘被挡住，并且页面没有滚动条,返回true
-      if (
-        inputHeight + 250 + inputTopHeight >= clientHeight &&
-        scrollHeight === clientHeight
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  },
-  created() {
-    this.placehoderDom = document.createElement("div");
-    this.placehoderDom.style.cssText =
-      "height: 260px;width: 100%;background: red;opacity:0";
-    this.placehoderDom.style.display = "none";
-    document.body.appendChild(this.placehoderDom);
   },
   watch: {
     inputValue(key) {
@@ -259,21 +235,6 @@ export default {
       if (this.inputValue.length > 0 && this.inputValue.length < 8)
         this.keybordType = "ABC";
     },
-    visible(type) {
-      if (type) {
-        //键盘唤醒并且键盘挡住输入框,同时页面无滚动条时，占位块展示出来从而使页面可以通过scrllTo()来滚动
-        if (this.checkInputLocation()) {
-          this.placehoderDom.style.display = "block";
-        }
-        window.scrollTo(0, 250);
-      } else {
-        document.body.scrollIntoView({
-          block: "start",
-          behavior: "smooth"
-        });
-        this.placehoderDom.style.display = "none";
-      }
-    }
   }
 };
 </script>
