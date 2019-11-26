@@ -7,7 +7,7 @@ input-number-plate是基于Vue的一款虚拟键盘，用于车牌号输入。
 
 ![效果展示](http://www.woke20.com/staticFile/images/upload_b8ce6f66eec395faf3838ec6c70486be.png)
 
-## 如何使用
+## 如何使用（1）
 
 ```
 1.安装组件
@@ -27,6 +27,12 @@ Vue.use(InputCar)
 <InputCar @submit="submit"></InputCar>
 
 submit()方法提供了，输入完整车牌号后的回调函数,参数为输入的车牌号
+```
+
+## 如何使用（2）
+
+```
+直接下载文件，将源文件移入项目中使用
 ```
 
 ## 历史:2019-11-22 @0.1.0
