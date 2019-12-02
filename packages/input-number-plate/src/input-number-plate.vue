@@ -8,7 +8,7 @@
     <div ref="inputBlock" @click="open()" v-if="defaultType" class="data-show">
       <div
         :class="['data-show-block', { active: showLength === n }]"
-        v-for="n in 8"
+        v-for="n in 7"
         :key="n"
       >
         {{ inputValue[n] || "" }}
@@ -20,7 +20,7 @@
       <div v-if="visible" class="keybord-wrap">
         <header class="keybord-header">
           <span @click.stop="cancel()">取消</span>
-          <span :class="[{ gray: showLength !== 8 }]" @click.stop="submit()"
+          <span :class="[{ gray: showLength !== 7 }]" @click.stop="submit()"
             >完成</span
           >
         </header>
@@ -218,14 +218,14 @@ export default {
     toggle() {
       if (
         this.inputValue.length === 0 ||
-        (this.inputValue.length > 0 && this.inputValue.length < 7)
+        (this.inputValue.length > 0 && this.inputValue.length < 6)
       )
         return;
       this.keybordType = this.keybordType === "ABC" ? "字" : "ABC";
     },
     // 文字输入
     inputWord(word) {
-      if (this.inputValue.length === 8) return;
+      if (this.inputValue.length === 7) return;
       this.inputValue.push(word);
     },
     // 删除一个字符
@@ -240,7 +240,7 @@ export default {
     },
     // 完成
     submit() {
-      if (this.inputValue.length !== 8) return;
+      if (this.inputValue.length !== 7) return;
       this.$emit("submit", this.inputValue.join(""));
       this.visible = false;
     },
@@ -252,7 +252,7 @@ export default {
   watch: {
     inputValue(key) {
       if (this.inputValue.length === 0) this.keybordType = "字";
-      if (this.inputValue.length > 0 && this.inputValue.length < 8)
+      if (this.inputValue.length > 0 && this.inputValue.length < 7)
         this.keybordType = "ABC";
     }
   }
