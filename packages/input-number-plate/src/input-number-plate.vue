@@ -8,7 +8,7 @@
     <div ref="inputBlock" @click="open()" v-if="defaultType" class="data-show">
       <div
         :class="['data-show-block', { active: inputValue.length === n - 1 }]"
-        v-for="n in 8"
+        v-for="n in 7"
         :key="n"
       >
         {{ inputValue[n - 1] }}
@@ -21,7 +21,7 @@
         <header class="keybord-header">
           <span @click.stop="cancel()">取消</span>
           <span
-            :class="[{ gray: inputValue.length !== 8 }]"
+            :class="[{ gray: inputValue.length !== 7 }]"
             @click.stop="submit()"
             >完成</span
           >
@@ -201,14 +201,14 @@ export default {
     toggle() {
       if (
         this.inputValue.length === 0 ||
-        (this.inputValue.length > 0 && this.inputValue.length < 7)
+        (this.inputValue.length > 0 && this.inputValue.length < 6)
       )
         return;
       this.keybordType = this.keybordType === "ABC" ? "字" : "ABC";
     },
     // 文字输入
     inputWord(word) {
-      if (this.inputValue.length === 8) return;
+      if (this.inputValue.length === 7) return;
       this.inputValue.push(word);
     },
     // 删除一个字符
@@ -223,7 +223,7 @@ export default {
     },
     // 完成
     submit() {
-      if (this.inputValue.length !== 8) return;
+      if (this.inputValue.length !== 7) return;
       this.$emit("submit", this.inputValue.join(""));
     },
     // 打开键盘
@@ -257,7 +257,7 @@ export default {
   watch: {
     inputValue(key) {
       if (this.inputValue.length === 0) this.keybordType = "字";
-      if (this.inputValue.length > 0 && this.inputValue.length < 8)
+      if (this.inputValue.length > 0 && this.inputValue.length < 7)
         this.keybordType = "ABC";
     },
     visible(type) {
@@ -300,14 +300,14 @@ export default {
 }
 
 .gray {
-  color: gray;
+  color: rgb(173, 171, 171);
 }
 
 .data-show {
   position: relative;
   z-index: 99;
   width: 100%;
-  column-count: 8;
+  column-count: 7;
   column-gap: 5px;
   min-width: 200px;
   .data-show-block {
