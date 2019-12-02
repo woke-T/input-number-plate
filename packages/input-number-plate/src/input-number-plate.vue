@@ -236,6 +236,7 @@ export default {
     cancel() {
       this.visible = false;
       this.inputValue = [];
+      this.$emit("submit", this.inputValue.join(""));
     },
     // 完成
     submit() {
