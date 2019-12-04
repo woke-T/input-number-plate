@@ -11,7 +11,7 @@
         v-for="n in 7"
         :key="n"
       >
-        {{ inputValue[n] || "" }}
+        {{ inputValue[n] !== undefined ? inputValue[n] : '' }}
       </div>
     </div>
 
@@ -98,7 +98,7 @@
 
 <script>
 export default {
-  name: "InputCar",
+  name: 'InputCar',
   props: {
     defaultType: {
       type: Boolean,
@@ -107,47 +107,47 @@ export default {
   },
   data: function() {
     return {
-      keybordType: "字",
+      keybordType: '字',
       inputValue: [],
       visible: false,
       wordList: [
-        "京",
-        "津",
-        "渝",
-        "沪",
-        "冀",
-        "晋",
-        "辽",
-        "吉",
-        "黑",
-        "苏",
-        "浙",
-        "皖",
-        "闽",
-        "赣",
-        "鲁",
-        "豫",
-        "鄂",
-        "湘",
-        "粤",
-        "琼",
-        "川",
-        "贵",
-        "云",
-        "陕",
-        "甘",
-        "青",
-        "蒙",
-        "桂",
-        "宁",
-        "新",
-        "藏",
-        "使",
-        "领",
-        "警",
-        "学",
-        "港",
-        "澳"
+        '京',
+        '津',
+        '渝',
+        '沪',
+        '冀',
+        '晋',
+        '辽',
+        '吉',
+        '黑',
+        '苏',
+        '浙',
+        '皖',
+        '闽',
+        '赣',
+        '鲁',
+        '豫',
+        '鄂',
+        '湘',
+        '粤',
+        '琼',
+        '川',
+        '贵',
+        '云',
+        '陕',
+        '甘',
+        '青',
+        '蒙',
+        '桂',
+        '宁',
+        '新',
+        '藏',
+        '使',
+        '领',
+        '警',
+        '学',
+        '港',
+        '澳'
       ],
       abcList: [
         1,
@@ -160,57 +160,57 @@ export default {
         8,
         9,
         0,
-        "Q",
-        "W",
-        "E",
-        "R",
-        "T",
-        "Y",
-        "U",
-        "I",
-        "O",
-        "P",
-        "A",
-        "S",
-        "D",
-        "F",
-        "G",
-        "H",
-        "J",
-        "K",
-        "L",
-        "Z",
-        "X",
-        "C",
-        "V",
-        "B",
-        "N",
-        "M"
+        'Q',
+        'W',
+        'E',
+        'R',
+        'T',
+        'Y',
+        'U',
+        'I',
+        'O',
+        'P',
+        'A',
+        'S',
+        'D',
+        'F',
+        'G',
+        'H',
+        'J',
+        'K',
+        'L',
+        'Z',
+        'X',
+        'C',
+        'V',
+        'B',
+        'N',
+        'M'
       ]
-    };
+    }
   },
   computed: {
     judgeList() {
-      if (this.keybordType === "ABC") {
-        return this.abcList.slice(29, 36);
+      if (this.keybordType === 'ABC') {
+        return this.abcList.slice(29, 36)
       } else {
-        return this.wordList.slice(30, 37);
+        return this.wordList.slice(30, 37)
       }
     },
     showLength() {
-      return this.inputValue.length;
+      return this.inputValue.length
     },
     lineOneToThree() {
-      return this.wordList.slice(0, 30);
+      return this.wordList.slice(0, 30)
     },
     abcLineOne() {
-      return this.abcList.slice(0, 10);
+      return this.abcList.slice(0, 10)
     },
     abcLineTwo() {
-      return this.abcList.slice(10, 20);
+      return this.abcList.slice(10, 20)
     },
     abcLineThree() {
-      return this.abcList.slice(20, 29);
+      return this.abcList.slice(20, 29)
     }
   },
   methods: {
@@ -220,43 +220,43 @@ export default {
         this.inputValue.length === 0 ||
         (this.inputValue.length > 0 && this.inputValue.length < 6)
       )
-        return;
-      this.keybordType = this.keybordType === "ABC" ? "字" : "ABC";
+        return
+      this.keybordType = this.keybordType === 'ABC' ? '字' : 'ABC'
     },
     // 文字输入
     inputWord(word) {
-      if (this.inputValue.length === 7) return;
-      this.inputValue.push(word);
+      if (this.inputValue.length === 7) return
+      this.inputValue.push(word)
     },
     // 删除一个字符
     deleteOne() {
-      this.inputValue.pop();
+      this.inputValue.pop()
     },
     // 取消
     cancel() {
-      this.visible = false;
-      this.inputValue = [];
-      this.$emit("submit", this.inputValue.join(""));
+      this.visible = false
+      this.inputValue = []
+      this.$emit('submit', this.inputValue.join(''))
     },
     // 完成
     submit() {
-      if (this.inputValue.length !== 7) return;
-      this.$emit("submit", this.inputValue.join(""));
-      this.visible = false;
+      if (this.inputValue.length !== 7) return
+      this.$emit('submit', this.inputValue.join(''))
+      this.visible = false
     },
     // 打开键盘
     open() {
-      this.visible = true;
+      this.visible = true
     }
   },
   watch: {
     inputValue(key) {
-      if (this.inputValue.length === 0) this.keybordType = "字";
+      if (this.inputValue.length === 0) this.keybordType = '字'
       if (this.inputValue.length > 0 && this.inputValue.length < 7)
-        this.keybordType = "ABC";
+        this.keybordType = 'ABC'
     }
   }
-};
+}
 </script>
 
 <style scoped lang="less">
