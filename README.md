@@ -5,6 +5,7 @@ input-number-plate是基于Vue的一款虚拟键盘，用于车牌号输入。
 简洁，清爽。输入框可以宽度自适应，并且保持宽高比例。
 
 ![效果展示](http://www.woke20.com/staticFile/images/upload_b8ce6f66eec395faf3838ec6c70486be.png)
+http://www.woke20.com/staticFile/images/upload_b8ce6f66eec395faf3838ec6c70486be.png
 
 ## 如何使用
 
@@ -36,6 +37,11 @@ submit()方法提供了，输入完整车牌号后的回调函数,参数为输�
 ## 历史:2019-11-25 @0.2.0
 ```
 1.添加了对输入框位置的判断，如果输入框可能被键盘挡住，则整个页面会被上推
+```
+
+## 历史:2019-11-25 @0.2.2
+```
+1.修改了车牌号位数错误的bug
 ```
 
 
