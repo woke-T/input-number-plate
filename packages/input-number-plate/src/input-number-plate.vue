@@ -76,7 +76,7 @@
               {{ keybordType }}
             </div>
             <ul class="keybord-keys-bottom-line">
-              <li class="button" v-for="item in judgeList" :key="item">
+              <li @click.stop="inputWord(item)" class="button" v-for="item in judgeList" :key="item">
                 {{ item }}
               </li>
             </ul>
