@@ -6,6 +6,7 @@ module.exports = {
       filename: "index.html"
     }
   },
+  productionSourceMap: false,
 
   chainWebpack: config => {
     config.module
