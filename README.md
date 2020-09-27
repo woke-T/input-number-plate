@@ -1,8 +1,9 @@
 # input-number-plate
 
 ## 介绍
+
 此分支为小程序端适配
-input-number-plate是基于Vue的一款虚拟键盘，用于车牌号输入。
+input-number-plate 是基于 Vue 的一款虚拟键盘，用于车牌号输入。
 简洁，清爽。输入框可以宽度自适应，并且保持宽高比例。
 
 ![效果展示](http://www.woke20.com/staticFile/images/upload_b8ce6f66eec395faf3838ec6c70486be.png)
@@ -25,9 +26,14 @@ Vue.use(InputCar)
 
 ```
 3.页面使用
-<InputCar @submit="submit"></InputCar>
+<InputCar @submit="submit" @input="input" :defaultType="true"></InputCar>
 
-submit()方法提供了，输入完整车牌号后的回调函数,参数为输入的车牌号
+defaultType:
+是否现实默认的车牌号展示框，您可以利用插槽和input()自己实现显示效果
+submit钩子:
+提供了，输入完整车牌号后的回调函数,参数为输入的车牌号
+input钩子:
+提供了，输入车牌号时的回调函数,参数为输入的车牌号
 ```
 
 ## 如何使用（2）
@@ -37,14 +43,20 @@ submit()方法提供了，输入完整车牌号后的回调函数,参数为输�
 ```
 
 ## 历史:2019-11-22 @0.1.0
+
 ```
 1.首次发版
 ```
 
 ## 历史:2019-12-04 @0.1.5
+
 ```
 1.修改了输入0时候不显示的bug
 ```
 
+## 历史:2020-09-27 @0.1.6
 
-
+```
+1.修改了已知bug
+2.添加input钩子
+```
