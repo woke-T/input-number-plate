@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <div class="wrap">
-      <div class="test-wrap">
-        <InputCar @submit="submit"></InputCar>
-        <div>测试</div>
-      </div>
-    </div>
+    <InputCar class="input-car" @submit="submit" @input="input"></InputCar>
   </div>
 </template>
 
@@ -14,23 +9,23 @@ export default {
   name: "app",
   components: {},
   methods: {
-    submit(value) {
-      console.log(value);
+    submit (value) {
+      console.log(value)
+    },
+    input (value) {
+      console.log(value)
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
 html,
 body {
   margin: 0;
   padding: 0;
-  overflow: scroll;
 }
-.wrap {
-  padding-top: 500px;
-  /* height: 100vh; */
+.input-car {
+  height: 60px;
 }
-
 </style>

@@ -8,7 +8,7 @@
     <div ref="inputBlock" @click="open()" v-if="defaultType" class="data-show">
       <div
         :class="['data-show-block', { active: showLength === n }]"
-        v-for="n in 7"
+        v-for="n in [0, 1, 2, 3, 4, 5, 6]"
         :key="n"
       >
         {{ inputValue[n] !== undefined ? inputValue[n] : '' }}
@@ -105,7 +105,7 @@ export default {
       default: true
     }
   },
-  data: function() {
+  data: function () {
     return {
       keybordType: '字',
       inputValue: [],
@@ -190,70 +190,74 @@ export default {
     }
   },
   computed: {
-    judgeList() {
+    judgeList () {
       if (this.keybordType === 'ABC') {
         return this.abcList.slice(29, 36)
       } else {
         return this.wordList.slice(30, 37)
       }
     },
-    showLength() {
+    showLength () {
       return this.inputValue.length
     },
-    lineOneToThree() {
+    lineOneToThree () {
       return this.wordList.slice(0, 30)
     },
-    abcLineOne() {
+    abcLineOne () {
       return this.abcList.slice(0, 10)
     },
-    abcLineTwo() {
+    abcLineTwo () {
       return this.abcList.slice(10, 20)
     },
-    abcLineThree() {
+    abcLineThree () {
       return this.abcList.slice(20, 29)
+    }
+  },
+  watch: {
+    inputValue (val,oldVal) {
+      if (this.inputValue.length === 0) {
+        this.keybordType = '字'
+      }
+      if (this.inputValue.length > 0 && this.inputValue.length < 7) {
+        this.keybordType = 'ABC'
+      }
+      this.$emit('input', this.inputValue)
     }
   },
   methods: {
     // 键盘类型切换
-    toggle() {
+    toggle () {
       if (
         this.inputValue.length === 0 ||
-        (this.inputValue.length > 0 && this.inputValue.length < 6)
+        (this.inputValue.length > 0 && this.inputValue.length <= 6)
       )
         return
       this.keybordType = this.keybordType === 'ABC' ? '字' : 'ABC'
     },
     // 文字输入
-    inputWord(word) {
+    inputWord (word) {
       if (this.inputValue.length === 7) return
       this.inputValue.push(word)
     },
     // 删除一个字符
-    deleteOne() {
+    deleteOne () {
       this.inputValue.pop()
     },
     // 取消
-    cancel() {
+    cancel () {
       this.visible = false
       this.inputValue = []
       this.$emit('submit', this.inputValue.join(''))
     },
     // 完成
-    submit() {
+    submit () {
       if (this.inputValue.length !== 7) return
       this.$emit('submit', this.inputValue.join(''))
       this.visible = false
     },
     // 打开键盘
-    open() {
+    open () {
       this.visible = true
-    }
-  },
-  watch: {
-    inputValue(key) {
-      if (this.inputValue.length === 0) this.keybordType = '字'
-      if (this.inputValue.length > 0 && this.inputValue.length < 7)
-        this.keybordType = 'ABC'
     }
   }
 }
@@ -290,6 +294,7 @@ export default {
   display: flex;
   justify-content: space-around;
   min-width: 375rpx;
+  min-height: 50rpx;
   .data-show-block {
     flex: 1;
     text-align: center;
@@ -301,7 +306,7 @@ export default {
     margin-left: 5rpx;
   }
   .active {
-    border: 1px solid #4ad5c2;
+    border: 1rpx solid #4ad5c2;
   }
 }
 
